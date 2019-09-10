@@ -11,8 +11,8 @@ import React, {Component} from 'react';
         return(
           <div className='header'>
               <h1>Lambda Treasure Hunt</h1>
-              <h2>Map</h2>
-              <h2>About</h2>
+              <h2>MAP</h2>
+              <h2>ABOUT</h2>
           </div>
           
         )
