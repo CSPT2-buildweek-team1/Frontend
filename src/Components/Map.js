@@ -17,7 +17,7 @@ for (let i = 0; i < data1.length; i++) {
 console.log(coords)
 
     function Chart({data}) {
-       return <XYPlot width={1100} height={750}>
+       return <XYPlot width={900} height={550}>
          <HorizontalGridLines />
          <VerticalGridLines />
          <MarkSeries data={data} />

@@ -4,19 +4,23 @@ import logo from '../img/skull.svg'
 
 
   export class Header extends Component {
-    constructor() {
-        super();
-        this.state = {
-      }};
-
+    constructor(props) {
+        super(props);
+        this.state = { 
+        
+      };
+    }
       render(){
         return(
-          <div className="background">
+    <div className="background">
 <div className="hero">
-<div class="logo">
-    <img src={logo} width="600px"/>
+<div className="title">
+<span className="caption">Lambda</span>
+<span className="caption">Treasure Hunt</span>
+<div className="logo">
+    <img src={logo} />
 </div>
-<span class="caption">Lambda Treasure Hunt</span>
+</div>
 </div>
 </div>
           

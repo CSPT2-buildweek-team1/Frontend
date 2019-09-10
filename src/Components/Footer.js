@@ -19,13 +19,13 @@ import {Button} from 'primereact/button';
               </div>
               <div className='controls'>
       
-              <Button label="Secondary" className="p-button-secondary" >N</Button>
-              <Button label="Secondary" className="p-button-secondary">S</Button>
-              <Button label="Secondary" className="p-button-secondary">E</Button>
-              <Button label="Secondary" className="p-button-secondary">W</Button>
-              <Button label="Secondary" className="p-button-secondary">icon</Button>
-              <Button label="Secondary" className="p-button-secondary">icon</Button>
-              <Button label="Secondary" className="p-button-secondary">icon</Button>
+              <div className="buttom" >N</div>
+              <div className="buttom" >S</div>
+              <div className="buttom" >E</div>
+              <div className="buttom" >W</div>
+              <i className="buttom" class="fas fa-store"></i>
+              <i className="buttom" class="fas fa-dollar-sign"></i>
+              <i className="buttom" class="fas fa-hand-holding"></i>
               
               </div>
           </div>

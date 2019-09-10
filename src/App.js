@@ -13,14 +13,16 @@ import Landing from './Components/Landing'
     constructor() {
         super();
         this.state = {
-        
-      }};
+          showing: true 
+      };
+    }
 
       render(){
+        const { showing } = this.state;
         return(
     
-          <div >
-           <div className='landing'> <Landing /> </div> 
+          <div onClick={() => this.setState({ showing: !showing })} >
+           <div className='landing'  style={{ display: (showing ? 'null' : 'none') }} > <Landing /> </div> 
             <Header />
             <div className='body'>
               <Map />
