@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
+import {Button} from 'primereact/button';
 
   export class Footer extends Component {
     constructor() {
@@ -17,7 +18,15 @@ import '../App.css';
               <h2>Message</h2>
               </div>
               <div className='controls'>
-              <h2>Controls</h2>
+      
+              <Button label="Secondary" className="p-button-secondary" >N</Button>
+              <Button label="Secondary" className="p-button-secondary">S</Button>
+              <Button label="Secondary" className="p-button-secondary">E</Button>
+              <Button label="Secondary" className="p-button-secondary">W</Button>
+              <Button label="Secondary" className="p-button-secondary">icon</Button>
+              <Button label="Secondary" className="p-button-secondary">icon</Button>
+              <Button label="Secondary" className="p-button-secondary">icon</Button>
+              
               </div>
           </div>
           

@@ -147,5 +147,14 @@ img {
   font-size: 2em;
 }
 
+.button{ 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+}
+
+body .p-button {
+ color: red; 
+}
+
 
 
