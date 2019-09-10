@@ -11,10 +11,10 @@ import React, {Component} from 'react';
         return(
         <div className='sidebar'>
             <div className='top'>
-                <h1>Top</h1>
+                <h2>TOP</h2>
             </div>
             <div className='bottom'>
-                <h1>Bottom</h1>
+                <h2>BOTTOM</h2>
             </div>
         </div>
         )

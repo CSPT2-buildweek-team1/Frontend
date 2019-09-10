@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import '../App.css';
+import logo from '../img/skull.svg'
 
 
   export class Header extends Component {
@@ -9,11 +11,14 @@ import React, {Component} from 'react';
 
       render(){
         return(
-          <div className='header'>
-              <h1>Lambda Treasure Hunt</h1>
-              <h2>MAP</h2>
-              <h2>ABOUT</h2>
-          </div>
+          <div className="background">
+<div className="hero">
+<div class="logo">
+    <img src={logo} width="600px"/>
+</div>
+<span class="caption">Lambda Treasure Hunt</span>
+</div>
+</div>
           
         )
       }
