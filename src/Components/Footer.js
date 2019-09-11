@@ -23,9 +23,9 @@ import {Button} from 'primereact/button';
               <div className="buttom" >S</div>
               <div className="buttom" >E</div>
               <div className="buttom" >W</div>
-              <i className="buttom" class="fas fa-store"></i>
-              <i className="buttom" class="fas fa-dollar-sign"></i>
-              <i className="buttom" class="fas fa-hand-holding"></i>
+              <i className="buttom" className="fas fa-store"></i>
+              <i className="buttom" className="fas fa-dollar-sign"></i>
+              <i className="buttom" className="fas fa-hand-holding"></i>
               
               </div>
           </div>

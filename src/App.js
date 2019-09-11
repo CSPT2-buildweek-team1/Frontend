@@ -7,25 +7,37 @@ import Map from './Components/Map'
 import Sidebar from './Components/Sidebar'
 import Footer from './Components/Footer'
 import Landing from './Components/Landing'
+import axios from 'axios';
 
 
   export class App extends Component {
     constructor() {
         super();
         this.state = {
-          showing: true 
+          showing: true,
       };
     }
 
+    componentDidMount() {
+      axios.get(`http://localhost:5000/`)
+        .then(res => {
+          this.setState({ rooms: res.data });
+          setTimeout(1000000)
+          this.setState({ showing: false });
+          console.log(this.state.rooms)
+        })
+    }
+
+    
+
       render(){
-        const { showing } = this.state;
         return(
     
-          <div onClick={() => this.setState({ showing: !showing })} >
-           <div className='landing'  style={{ display: (showing ? 'null' : 'none') }} > <Landing /> </div> 
-            <Header />
+       this.state.showing ? <Landing /> :
+          <div>
+          <Header />
             <div className='body'>
-              <Map />
+              <Map rooms={this.state.rooms.data}/>
               <Sidebar />
             </div>
             <Footer />
