@@ -22,9 +22,8 @@ import axios from 'axios';
       axios.get(`http://localhost:5000/`)
         .then(res => {
           this.setState({ rooms: res.data });
-          setTimeout(1000000)
+          setTimeout(10000)
           this.setState({ showing: false });
-          console.log(this.state.rooms)
         })
     }
 

@@ -3,6 +3,7 @@ import {HorizontalGridLines, VerticalGridLines,
     XYPlot, MarkSeries, LineSeries,
     LineSeriesCanvas} from 'react-vis'
 
+
   export class Map extends Component {
     constructor() {
         super();
@@ -10,33 +11,49 @@ import {HorizontalGridLines, VerticalGridLines,
             
       }};
 
+      allEdges = (rooms) => {
+          var allEdges = []
+          var newEdges = []
+          for (var i=0; i < rooms.length; i++) {
+              allEdges.push([rooms[i].coordinates, rooms[i].exits])
+          }
+          for (var i=0; i < allEdges.length; i++) {
+              for (var item in allEdges[i][1]) {
+                  if (item === 'n') {
+                      let coords = this.makeCoords(allEdges[i][0])
+                      let destCoords = coords
+                      destCoords.y += 1
+                      newEdges.push([coords, destCoords])
+                  }
+                   else if (item === 's') {
+                    let coords = this.makeCoords(allEdges[i][0])
+                    let destCoords = coords
+                    destCoords.y -= 1
+                    newEdges.push([coords, destCoords])
+                }
+                else if (item === 'e') {
+                    let coords = this.makeCoords(allEdges[i][0])
+                    let destCoords = coords
+                    destCoords.x += 1
+                    newEdges.push([coords, destCoords])
+                }
+                else if (item === 'w') {
+                    let coords = this.makeCoords(allEdges[i][0])
+                    let destCoords = coords
+                    destCoords.x -= 1
+                    newEdges.push([coords, destCoords])
+                }
+              }
+          }
+          return newEdges
+      }
   
       makeCoords = (coords) => {
           let cords = coords.split('')
           let a = cords[1] + cords[2]
           let b = cords[4] + cords[5]
-          return {x: a, y: b}
+          return {x: parseInt(a), y: parseInt(b)}
       }
-  
-    //   getRoomEdges = (rooms) => {
-    //       var edges = []
-    //       Object.keys(rooms.exits).forEach(function(key) {
-    //           if (rooms.exits[key] !== "?"){
-    //           edges.push([this.makeCoords(rooms.coordinates), this.makeCoords(this.state.rooms[rooms.exits[key]].coordinates)])
-    //           }
-    //         });
-    //         return edges
-    //   }
-  
-    //    getAllEdges = (data) => {
-    //       var allEdges = []
-    //       // merge all of the edges for each room into the resulting array 
-    //       for (var room in data) {
-    //           var roomEdges = this.getRoomEdges(this.state.rooms[room])
-    //           allEdges = allEdges.concat(roomEdges)
-    //       }
-    //       return allEdges
-    //   }
 
       getAllRooms = (rooms) => {
           let coords = []
@@ -46,18 +63,26 @@ import {HorizontalGridLines, VerticalGridLines,
           return coords
       }
 
+      roomLines = (edges) => {
+          for (var i=0; i < edges.length; i++){
+              return (
+                <LineSeries
+                data={edges[i]}
+                color='#96B146'
+                key={Math.random()}
+            />
+              )
+          }
+      }
+
       render(){
+          var edges = this.allEdges(this.props.rooms)
         return(
         <div className='map'>
           <XYPlot width={900} height={550}>
            <HorizontalGridLines />
            <VerticalGridLines />
-           {/* {this.state.rooms.map(edge => (
-                  <LineSeries 
-                  data={this.getAllEdges(this.state.rooms)}
-                  stroke="black"
-                  />
-              ))} */}
+           {this.roomLines(edges)}
            <MarkSeries data={this.getAllRooms(this.props.rooms)} color="black" />
            </XYPlot>
            {/* <h1>Hi</h1> */}
@@ -70,3 +95,6 @@ import {HorizontalGridLines, VerticalGridLines,
 export default Map;
 
 
+
+
+// 
