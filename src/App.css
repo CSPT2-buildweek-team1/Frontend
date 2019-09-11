@@ -97,6 +97,7 @@ img {
   justify-content: center;
   background-color: #FFFBE5;
   flex-direction: column;
+  margin-top: 60px;
 }
 
 
@@ -106,6 +107,7 @@ img {
   grid-template-columns: 70vw 30vw;
   grid-template-rows: 50% 50%;
   background-color: #FFFBE5;
+
 }
 
 .map {
