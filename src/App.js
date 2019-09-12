@@ -15,6 +15,7 @@ import axios from 'axios';
         super();
         this.state = {
           showing: true,
+          currentRoom: ''
       };
     }
 
@@ -25,6 +26,11 @@ import axios from 'axios';
           setTimeout(100)
           this.setState({ showing: false });
         })
+      axios.get('http://localhost:5000/init')
+      .then(res => {
+        this.setState({ currentRoom: res.data })
+        console.log(res)
+      })
     }
 
     
@@ -37,7 +43,7 @@ import axios from 'axios';
           <Header />
             <div className='body'>
               <Map rooms={this.state.rooms.data}/>
-              <Sidebar />
+              <Sidebar initialRoom = {this.state.currentRoom} />
             </div>
             <Footer />
           </div>
