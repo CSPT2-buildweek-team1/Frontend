@@ -15,7 +15,7 @@ import axios from 'axios';
         super();
         this.state = {
           showing: true,
-
+          currentRoom: '',
           room: {
             room_id: 0,
             description: '',
@@ -28,7 +28,6 @@ import axios from 'axios';
             exits: {
             },
           },
-
           player: {
             name: '',
             speed: 0,
@@ -48,6 +47,13 @@ import axios from 'axios';
           setTimeout(100)
           this.setState({ showing: false });
         })
+
+      axios.get('http://localhost:5000/init')
+      .then(res => {
+        this.setState({ currentRoom: res.data })
+        console.log(res)
+      })
+
 
         axios.get(`http://localhost:5000/init`)
         .then(res => {
@@ -99,6 +105,7 @@ import axios from 'axios';
           })
         })
         .catch(err => console.log(err))
+
     }
 
     
@@ -112,7 +119,7 @@ import axios from 'axios';
           <Header />
             <div className='body'>
               <Map rooms={this.state.rooms.data}/>
-              <Sidebar />
+              <Sidebar initialRoom = {this.state.currentRoom} />
             </div>
             <Footer player={this.state.player} room={this.state.room}/>
           </div>
