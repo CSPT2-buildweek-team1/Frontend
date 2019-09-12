@@ -36,6 +36,7 @@ import axios from "axios";
               <h2>Message</h2>
               </div>
               <div className='controls'>
+
               <div onClick={ ()=> move('n', this.state.north)} className="button" >N</div>
               <div onClick={ ()=> move('s', this.state.south)} className="button" >S</div>
               <div onClick={ ()=> move('e', this.state.east)} className="button" >E</div>
@@ -43,6 +44,7 @@ import axios from "axios";
               <i onClick={ ()=> sell('item', this.state.item)} className="button" class="fas fa-store"></i>
               <i onClick={ ()=> take('item', this.state.item)} className="button" class="fas fa-dollar-sign"></i>
             
+
               
               </div>
           </div>
