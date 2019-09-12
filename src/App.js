@@ -15,6 +15,29 @@ import axios from 'axios';
         super();
         this.state = {
           showing: true,
+
+          room: {
+            room_id: 0,
+            description: '',
+            messages: [],
+            terrain: '',
+            title: '',
+            elevation: 0,
+            coordinates: '',
+            items: [],
+            exits: {
+            },
+          },
+
+          player: {
+            name: '',
+            speed: 0,
+            strength: 0,
+            inventory: [],
+            encumbrance: 0,
+            messages: [],
+            gold: 0
+          }
       };
     }
 
@@ -25,11 +48,63 @@ import axios from 'axios';
           setTimeout(100)
           this.setState({ showing: false });
         })
+
+        axios.get(`http://localhost:5000/init`)
+        .then(res => {
+          let room_id = res.data.data.room_id
+          let exits = res.data.exits
+          let description = res.data.data.description
+          let items = res.data.data.items
+          let messages = res.data.data.messages
+          let terrain = res.data.data.terrain
+          let title = res.data.data.title
+          let elevation = res.data.data.elevation
+          let coordinates = res.data.data.coordinates
+
+          this.setState({
+            room:{
+              room_id: room_id,
+              exits: exits,
+              description: description,
+              items: items,
+              messages: messages,
+              terrain: terrain,
+              title: title,
+              elevation: elevation,
+              coordinates: coordinates
+            }
+          })
+        }) 
+        .catch(err => console.log(err)) 
+
+        axios.post(`http://localhost:5000/status`)
+        .then(res => {
+          let playerName = res.data.data.name
+          let speed = res.data.data.speed
+          let strength = res.data.data.strength
+          let inventory = res.data.data.inventory
+          let encumbrance = res.data.data.encumbrance
+          let messages = res.data.data.messages
+          let gold = res.data.data.gold
+          this.setState({
+            player: {
+              name: playerName,
+              speed: speed,
+              strength: strength,
+              inventory: inventory,
+              encumbrance: encumbrance,
+              messages: messages,
+              gold: gold
+            }
+          })
+        })
+        .catch(err => console.log(err))
     }
 
     
 
       render(){
+        console.log('APP', this.state)
         return(
     
        this.state.showing ? <Landing /> :
@@ -39,7 +114,7 @@ import axios from 'axios';
               <Map rooms={this.state.rooms.data}/>
               <Sidebar />
             </div>
-            <Footer />
+            <Footer player={this.state.player} room={this.state.room}/>
           </div>
         )
       }
