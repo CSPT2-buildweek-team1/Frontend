@@ -7,29 +7,70 @@ import axios from "axios";
     constructor(props) {
         super(props);
         this.state = {
-          room_id: 0,
-          dir: {
-            n: 0,
-            e: 0,
-            w: 0,
-            s: 0
-          }
+          room: this.props.room,
+          player: this.props.player
         }
-      }
+    }
+
+    status = () => {
+      axios.post(`http://localhost:5000/status`)
+      .then(res => {
+        let playerName = res.data.data.name
+        let speed = res.data.data.speed
+        let strength = res.data.data.strength
+        let inventory = res.data.data.inventory
+        let encumbrance = res.data.data.encumbrance
+        let messages = res.data.data.messages
+        let gold = res.data.data.gold
+        this.setState({
+          player: {
+            name: playerName,
+            speed: speed,
+            strength: strength,
+            inventory: inventory,
+            encumbrance: encumbrance,
+            messages: messages,
+            gold: gold
+          }
+        })
+      })
+      .catch(err => console.log(err))
+    }
 
     move = (direction, prediction) => {
       axios
         .post("http://localhost:5000/move", 
           {"dir": direction, "predict": prediction})
         .then((res)=>{
-            console.log(res)
-            let room_id = res.data.data.room_id;
-            let exits = res.data.exits
-            this.setState({...this.state, room_id: room_id, dir: exits});
+          let room_id = res.data.data.room_id
+          let exits = res.data.exits
+          let description = res.data.data.description
+          let items = res.data.data.items
+          let messages = res.data.data.messages
+          let terrain = res.data.data.terrain
+          let title = res.data.data.title
+          let elevation = res.data.data.elevation
+          let coordinates = res.data.data.coordinates
+
+          this.setState({
+            room:{
+              room_id: room_id,
+              exits: exits,
+              description: description,
+              items: items,
+              messages: messages,
+              terrain: terrain,
+              title: title,
+              elevation: elevation,
+              coordinates: coordinates
+              }
             })
+          })
         .catch(err => {
           console.log(err)
         })
+
+        this.status()
     }
 
     sell = (item) => {
@@ -45,8 +86,6 @@ import axios from "axios";
 
 
       render(){
-        console.log('STATE', this.state)
-        
         return(
           <div className='footer'>
               <div className='explore'>
