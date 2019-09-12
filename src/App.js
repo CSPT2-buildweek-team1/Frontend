@@ -25,6 +25,7 @@ import axios from 'axios';
             elevation: 0,
             coordinates: '',
             items: [],
+            cooldown: 0,
             exits: {
             },
           },
@@ -51,6 +52,7 @@ import axios from 'axios';
 
         axios.get(`http://localhost:5000/init`)
         .then(res => {
+          console.log('INIT', res)
           let room_id = res.data.data.room_id
           let exits = res.data.exits
           let description = res.data.data.description
@@ -60,6 +62,7 @@ import axios from 'axios';
           let title = res.data.data.title
           let elevation = res.data.data.elevation
           let coordinates = res.data.data.coordinates
+          let cooldown = res.data.data.cooldown
 
           this.setState({
             room:{
@@ -71,7 +74,8 @@ import axios from 'axios';
               terrain: terrain,
               title: title,
               elevation: elevation,
-              coordinates: coordinates
+              coordinates: coordinates,
+              cooldown: cooldown
             }
           })
         }) 

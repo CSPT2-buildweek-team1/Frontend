@@ -42,6 +42,7 @@ import axios from "axios";
         .post("http://localhost:5000/move", 
           {"dir": direction, "predict": prediction})
         .then((res)=>{
+          console.log('RES', res)
           let room_id = res.data.data.room_id
           let exits = res.data.exits
           let description = res.data.data.description
@@ -51,6 +52,7 @@ import axios from "axios";
           let title = res.data.data.title
           let elevation = res.data.data.elevation
           let coordinates = res.data.data.coordinates
+          let cooldown = res.data.data.cooldown
 
           this.setState({
             room:{
@@ -62,7 +64,8 @@ import axios from "axios";
               terrain: terrain,
               title: title,
               elevation: elevation,
-              coordinates: coordinates
+              coordinates: coordinates,
+              cooldown: cooldown
               }
             })
           })
@@ -86,6 +89,7 @@ import axios from "axios";
 
 
       render(){
+        console.log(this.state.room.room_id, 'exits: ', this.state.room.exits, 'cooldown: ', this.state.room.cooldown, 'COORDS: ', this.state.room.coordinates)
         return(
           <div className='footer'>
               <div className='explore'>
@@ -96,10 +100,10 @@ import axios from "axios";
               </div>
               <div className='controls'>
 
-              <div onClick={ ()=> this.move('n', this.state.north)} className="button" >N</div>
-              <div onClick={ ()=> this.move('s', this.state.south)} className="button" >S</div>
-              <div onClick={ ()=> this.move('e', this.state.east)} className="button" >E</div>
-              <div onClick={ ()=> this.move('w', this.state.west)} className="button" >W</div>
+              <div onClick={ ()=> this.move('n', this.state.room.exits.n)} className="button" >N</div>
+              <div onClick={ ()=> this.move('s', this.state.room.exits.s)} className="button" >S</div>
+              <div onClick={ ()=> this.move('e', this.state.room.exits.e)} className="button" >E</div>
+              <div onClick={ ()=> this.move('w', this.state.room.exits.w)} className="button" >W</div>
               <i onClick={ ()=> this.sell('item', this.state.item)} className="button" class="fas fa-store"></i>
               <i onClick={ ()=> this.take('item', this.state.item)} className="button" class="fas fa-dollar-sign"></i>
             
