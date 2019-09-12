@@ -20,8 +20,9 @@ h2 {
 }
 
 
-.logo:hover{
+.logo{
   animation: shake 1.5s;
+  animation-iteration-count: 4;
 }
 
 @keyframes shake {
@@ -62,9 +63,9 @@ div.logo {
   text-align: center;
   /* The width of the container also implies margin around the images. */
   width: 800px;
-  animation: fadeInAnimation ease 6s ;
+  /* animation: fadeInAnimation ease 6s ;
   animation-iteration-count: 1; 
-  animation-fill-mode: backwards; 
+  animation-fill-mode: backwards;  */
 }
 
 @keyframes fadeInAnimation { 
@@ -176,11 +177,13 @@ img {
   font-weight: bold;
   font-size: 2em;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 500px;
+  align-items: center;
+
 }
 .button{
-  padding: 100px;
+  padding-right: 15px;
 }
 
 
