@@ -12,10 +12,12 @@ import React, {Component} from 'react';
         return(
         <div className='sidebar'>
             <div className='top'>
+                <div className='top-header'>
                 <h2>Room: {room.room_id} </h2>
                 <h2>{room.coordinates}</h2>
+                </div>
                 <h2>{room.title}</h2>
-                <p>{room.description}</p>
+                <p className="roomdesc">{room.description}</p>
                 <h2>Items:</h2>
                 {room.items.forEach(item => <p>{item}</p>)}
                 <h2>Players:</h2>

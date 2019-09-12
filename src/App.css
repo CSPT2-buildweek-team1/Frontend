@@ -103,11 +103,12 @@ img {
 
 
 .body {
-  height: 950px;
+  height: 80vh;
   display: grid;
   grid-template-columns: 70vw 30vw;
   grid-template-rows: 50% 50%;
   background-color: #FFFBE5;
+  grid-gap: 0px;
 
 }
 
@@ -117,21 +118,34 @@ img {
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-  margin-bottom: 100px;
+  
 
 }
 
+.coords {
+  float: right;
+  margin-right: 20px; 
+}
+
 .top {
-  grid-area: 1/3/2/3;
+  grid-area: 1/3/2/4;
   height: 90%;
   background-color: #595858;
 }
 
+.top-header{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  margin-bottom: -30px
+}
+
 
 .bottom {
-  grid-area: 2/4/3/3;
+  grid-area: 2/3/3/4;
   height: 90%;
   background-color: #fff;
+
 }
 
 
@@ -140,6 +154,14 @@ img {
   padding: 10px;
   color: #FFFBE5;
 }
+
+.top p{
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  color: #FFFBE5;
+}
+
+
 .bottom h2{
   font-family: 'Montserrat', sans-serif;
   padding: 10px;
