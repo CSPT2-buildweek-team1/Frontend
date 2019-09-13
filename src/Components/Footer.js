@@ -8,7 +8,8 @@ import axios from "axios";
         super(props);
         this.state = {
           room: this.props.room,
-          player: this.props.player
+          player: this.props.player,
+          buttonClass: "button"
         }
     }
 
@@ -37,6 +38,13 @@ import axios from "axios";
       .catch(err => console.log(err))
     }
 
+    disableButton = () => {
+      let cooldown = this.state.room.cooldown * 1000 + 1000
+      setTimeout(()=> {
+        this.setState({buttonClass: "button"})
+      }, cooldown)
+    }
+
     move = (direction, prediction) => {
       axios
         .post("http://localhost:5000/move", 
@@ -55,6 +63,7 @@ import axios from "axios";
           let cooldown = res.data.data.cooldown
 
           this.setState({
+            buttonClass: "buttonDisabled",
             room:{
               room_id: room_id,
               exits: exits,
@@ -74,6 +83,7 @@ import axios from "axios";
         })
 
         this.status()
+        this.disableButton()
     }
 
     sell = (item) => {
@@ -100,10 +110,10 @@ import axios from "axios";
               </div>
               <div className='controls'>
 
-              <div onClick={ ()=> this.move('n', this.state.room.exits.n)} className="button" >N</div>
-              <div onClick={ ()=> this.move('s', this.state.room.exits.s)} className="button" >S</div>
-              <div onClick={ ()=> this.move('e', this.state.room.exits.e)} className="button" >E</div>
-              <div onClick={ ()=> this.move('w', this.state.room.exits.w)} className="button" >W</div>
+              <div onClick={ ()=> this.move('n', this.state.room.exits.n)} className={this.state.buttonClass} >N</div>
+              <div onClick={ ()=> this.move('s', this.state.room.exits.s)} className={this.state.buttonClass}  >S</div>
+              <div onClick={ ()=> this.move('e', this.state.room.exits.e)} className={this.state.buttonClass}  >E</div>
+              <div onClick={ ()=> this.move('w', this.state.room.exits.w)} className={this.state.buttonClass}  >W</div>
               <i onClick={ ()=> this.sell('item', this.state.item)} className="button" class="fas fa-store"></i>
               <i onClick={ ()=> this.take('item', this.state.item)} className="button" class="fas fa-dollar-sign"></i>
             
