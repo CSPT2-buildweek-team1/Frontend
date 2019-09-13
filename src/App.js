@@ -16,6 +16,7 @@ import axios from 'axios';
         this.state = {
           showing: true,
           currentRoom: '',
+          rooms: '',
           room: {
             room_id: 0,
             description: '',
@@ -26,6 +27,7 @@ import axios from 'axios';
             coordinates: '',
             items: [],
             cooldown: 0,
+            players: [],
             exits: {
             },
           },
@@ -49,13 +51,6 @@ import axios from 'axios';
           this.setState({ showing: false });
         })
 
-      axios.get('http://localhost:5000/init')
-      .then(res => {
-        this.setState({ currentRoom: res.data })
-        console.log(res)
-      })
-
-
         axios.get(`http://localhost:5000/init`)
         .then(res => {
           console.log('INIT', res)
@@ -69,6 +64,7 @@ import axios from 'axios';
           let elevation = res.data.data.elevation
           let coordinates = res.data.data.coordinates
           let cooldown = res.data.data.cooldown
+          let players = res.data.data.players
 
           this.setState({
             room:{
@@ -81,7 +77,8 @@ import axios from 'axios';
               title: title,
               elevation: elevation,
               coordinates: coordinates,
-              cooldown: cooldown
+              cooldown: cooldown,
+              players: players
             }
           })
         }) 
@@ -123,7 +120,7 @@ import axios from 'axios';
           <Header />
             <div className='body'>
               <Map rooms={this.state.rooms.data}/>
-              <Sidebar initialRoom = {this.state.currentRoom} />
+              <Sidebar room = {this.state.room} />
             </div>
             <Footer player={this.state.player} room={this.state.room}/>
           </div>
