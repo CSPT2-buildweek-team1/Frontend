@@ -208,6 +208,12 @@ img {
   padding-right: 15px;
 }
 
+.buttonDisabled {
+  padding-right: 15px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 
 
 
