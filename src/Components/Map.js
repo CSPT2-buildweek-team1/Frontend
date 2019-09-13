@@ -33,6 +33,7 @@ import Lines from './Lines'
 
 
       render(){
+          console.log("Room", this.props.currentRoom)
         return(
             <div>
             <h3 className='coords'>{this.state.value}</h3>
@@ -43,6 +44,8 @@ import Lines from './Lines'
             <MarkSeries data={this.getAllRooms(this.props.rooms)} color="black" 
             onValueMouseOver={(datapoint)=>{this.setState({ value: 'x: ' + datapoint.x + ', y: ' + datapoint.y })}}/>
             <MarkSeries data={[{x: 59, y:60}]} color="limegreen" 
+            onValueMouseOver={(datapoint)=>{this.setState({ value: 'x: ' + datapoint.x + ', y: ' + datapoint.y })}}/>
+            <MarkSeries data={[this.makeCoords(this.props.currentRoom.coordinates)]} color="red" 
             onValueMouseOver={(datapoint)=>{this.setState({ value: 'x: ' + datapoint.x + ', y: ' + datapoint.y })}}/>
             <Lines />
             </XYPlot>
