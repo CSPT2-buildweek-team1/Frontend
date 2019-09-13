@@ -15,6 +15,7 @@ import axios from 'axios';
         super();
         this.state = {
           showing: true,
+
           rooms: {},
           room: {
             room_id: 0,
