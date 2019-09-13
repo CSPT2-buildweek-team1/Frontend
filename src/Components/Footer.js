@@ -23,7 +23,17 @@ import axios from "axios";
         console.log('The link was clicked.');
       }
 
-
+    messages = (messages) => {
+      if (messages.length > 0) {
+        for (var i=0; i < messages.length; i++) {
+          return(messages[i]);}
+        } else {
+          return("No messages");
+        }
+      }
+    
+  
+     
       render(){
         return(
           <div className='footer'>
@@ -31,7 +41,7 @@ import axios from "axios";
               <h1>EXPLORE</h1>
               </div>
               <div className='message'>
-              <h2>Message</h2>
+              <h2>{this.messages(this.props.room.messages)}</h2>
               </div>
               <div className='controls'>
 
