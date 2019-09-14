@@ -50,7 +50,7 @@ import axios from 'axios';
         .then(res => {
           this.setState({ rooms: res.data });
           setTimeout(() => {
-                        this.setState({showing: false});
+                       this.setState({showing: false});
                       }, 2000)
         })
 
