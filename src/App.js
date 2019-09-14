@@ -26,7 +26,7 @@ import axios from 'axios';
             elevation: 0,
             coordinates: '',
             items: [],
-            cooldown: 0,
+            cooldown: 5,
             players: [],
             exits: {
             },
@@ -48,10 +48,11 @@ import axios from 'axios';
     componentDidMount() {
       axios.get(`http://localhost:5000/`)
         .then(res => {
-          this.setState({ rooms: res.data });
+          this.setState({ rooms: res.data, buttonClass: 'buttonDisabled' });
           setTimeout(() => {
                        this.setState({showing: false});
                       }, 2000)
+          this.disableButton(this.state.room.cooldown)
         })
 
         axios.get(`http://localhost:5000/init`)
@@ -136,8 +137,8 @@ import axios from 'axios';
       .catch(err => console.log(err))
     }
 
-    disableButton = () => {
-      let cooldown = this.state.room.cooldown * 1000 + 1000
+    disableButton = (cooldown) => {
+      cooldown = cooldown * 1000 + 3000
       setTimeout(()=> {
         this.setState({buttonClass: "button"})
       }, cooldown)
@@ -181,7 +182,7 @@ import axios from 'axios';
         })
 
         this.status()
-        this.disableButton()
+        this.disableButton(this.state.room.cooldown)
     }
 
     
