@@ -41,7 +41,7 @@ import axios from "axios";
               <h1>EXPLORE</h1>
               </div>
               <div className='message'>
-              <h2>{this.messages(this.props.room.messages)}</h2>
+              <h2 className='message' >{this.messages(this.props.room.messages)}</h2>
               </div>
               <div className='controls'>
 
