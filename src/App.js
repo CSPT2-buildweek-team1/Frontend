@@ -48,17 +48,11 @@ import axios from 'axios';
     componentDidMount() {
       axios.get(`http://localhost:5000/`)
         .then(res => {
-<<<<<<< HEAD
           this.setState({ rooms: res.data, buttonClass: 'buttonDisabled' });
-          setTimeout(100)
-          this.setState({ showing: false });
-          this.disableButton(this.state.room.cooldown)
-=======
-          this.setState({ rooms: res.data });
           setTimeout(() => {
                        this.setState({showing: false});
                       }, 2000)
->>>>>>> 24a1b988e139eb5d023c3d33189d00c913c34ca1
+          this.disableButton(this.state.room.cooldown)
         })
 
         axios.get(`http://localhost:5000/init`)
