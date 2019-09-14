@@ -50,8 +50,8 @@ import axios from 'axios';
         .then(res => {
           this.setState({ rooms: res.data });
           setTimeout(() => {
-            this.setState({showing: false});
-          }, 2000)     
+                        this.setState({showing: false});
+                      }, 2000)
         })
 
         axios.get(`http://localhost:5000/init`)
