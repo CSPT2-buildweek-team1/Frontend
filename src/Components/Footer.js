@@ -4,55 +4,45 @@ import {Button} from 'primereact/button';
 import axios from "axios";
 
   export class Footer extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-        }
-    }
-
-
-
-    sell = (item) => {
-      axios.post("http://localhost:5000/sell", {"item": item }).then((res)=>{console.log(res)},(error)=>{console.log(error)})}
-
-    take = (item) => {
-      axios.post("http://localhost:5000/take", {"item": item }).then((res)=>{console.log(res)},(error)=>{console.log(error)})}
-  
-    handleClick = (e) => {
-        e.preventDefault();
-        console.log('The link was clicked.');
-      }
-
-    messages = (messages) => {
-      if (messages.length > 0) {
-        for (var i=0; i < messages.length; i++) {
-          return(messages[i]);}
-        } else {
-          return("No messages");
-        }
       }
     
-  
-     
+    };
+
       render(){
+  
+        function move(direction, prediction){
+          axios.post("http://localhost:5000/move", {"dir": direction, "predict": prediction}).then((res)=>{console.log(res)},(error)=>{console.log(error)})
+        }
+        function sell(item){
+          axios.post("http://localhost:5000/sell", {"item": item }).then((res)=>{console.log(res)},(error)=>{console.log(error)})}
+    
+        function take(item){
+          axios.post("http://localhost:5000/take", {"item": item }).then((res)=>{console.log(res)},(error)=>{console.log(error)})}
+      
+          function handleClick(e) {
+            e.preventDefault();
+            console.log('The link was clicked.');
+          }
+        
         return(
           <div className='footer'>
               <div className='explore'>
               <h1>EXPLORE</h1>
               </div>
               <div className='message'>
-              <h2>{this.messages(this.props.room.messages)}</h2>
+              <h2>Message</h2>
               </div>
               <div className='controls'>
-
-              <div onClick={ ()=> this.props.move('n', this.props.room.exits.n)} className={this.props.buttonClass} >N</div>
-              <div onClick={ ()=> this.props.move('s', this.props.room.exits.s)} className={this.props.buttonClass}  >S</div>
-              <div onClick={ ()=> this.props.move('e', this.props.room.exits.e)} className={this.props.buttonClass}  >E</div>
-              <div onClick={ ()=> this.props.move('w', this.props.room.exits.w)} className={this.props.buttonClass}  >W</div>
-              <i onClick={ ()=> this.sell('item', this.state.item)} className="button" class="fas fa-store"></i>
-              <i onClick={ ()=> this.take('item', this.state.item)} className="button" class="fas fa-dollar-sign"></i>
+              <div onClick={ ()=> move('n', this.state.north)} className={this.props.buttonClass} className="button" >N</div>
+              <div onClick={ ()=> move('s', this.state.south)} className={this.props.buttonClass} className="button" >S</div>
+              <div onClick={ ()=> move('e', this.state.east)} className={this.props.buttonClass} className="button" >E</div>
+              <div onClick={ ()=> move('w', this.state.west)} className={this.props.buttonClass} className="button" >W</div>
+              <i onClick={ ()=> sell('item', this.state.item)} className="button" class="fas fa-store"></i>
+              <i onClick={ ()=> take('item', this.state.item)} className="button" class="fas fa-dollar-sign"></i>
             
-
               
               </div>
           </div>

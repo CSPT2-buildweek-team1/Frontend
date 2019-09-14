@@ -202,10 +202,16 @@ img {
   justify-content: space-around;
   width: 500px;
   align-items: center;
+  
 
 }
-.button{
+.button {
   padding-right: 15px;
+  cursor: pointer;
+}
+i  {
+  padding-right: 15px;
+  cursor: pointer;
 }
 
 .buttonDisabled {
