@@ -186,9 +186,16 @@ img {
   color: #323232;
   height: 100%;
   width: 50%;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
+  font-family: 'Beth Ellen', cursive;
+  font-weight: lighter;
+  font-size: 1.3em;
   padding: 10px;
+
+}
+
+.message  h2{
+
+  padding-bottom: 30px;
 }
 .explore h2 {
   font-family: 'Montserrat', sans-serif;
@@ -217,6 +224,22 @@ i {
   padding-right: 15px;
   opacity: 0.4;
   pointer-events: none;
+}
+
+.exits{
+  display: flex;
+
+}
+
+.exit {
+  flex: 25%;
+  align-content: flex-start;
+
+}
+
+.top p {
+  font-size: 1.2em;
+  margin: 0px;
 }
 
 
