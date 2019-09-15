@@ -36,7 +36,7 @@ import Lines from './Lines'
           console.log("Room", this.props.currentRoom)
         return(
             <div>
-            <h3 className='coords'>{this.state.value}</h3>
+            <h3 className='coords'>Coordinates: {this.props.currentRoom.coordinates} </h3>
             <div className='map'>
             <XYPlot width={900} height={550}>
              <HorizontalGridLines />
