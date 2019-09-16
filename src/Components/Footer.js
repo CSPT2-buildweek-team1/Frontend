@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {Button} from 'primereact/button';
 import axios from "axios";
 
   export class Footer extends Component {
