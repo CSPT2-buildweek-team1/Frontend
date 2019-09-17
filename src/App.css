@@ -127,6 +127,11 @@ img {
   margin-right: 20px; 
 }
 
+.lines {
+  margin-top: -553px;
+  z-index: -1;
+}
+
 .top {
   grid-area: 1/2/3/4;
   height: 98%;
