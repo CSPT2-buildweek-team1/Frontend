@@ -3,13 +3,12 @@ import axios from "axios";
 
 
   export class Sidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
       }
     
-    };
-
+    }
     
       drop = (item) => {
         axios.post("http://localhost:5000/drop", {"item": item }).then((res)=>{console.log(res)},(error)=>{console.log(error)})}
@@ -17,7 +16,6 @@ import axios from "axios";
      
       render(){
         let tem = this.props.room.items;
-
       let sampleData = ["stuff"]
         console.log('ROOM', this.props.room.room_id, 'EXITS',this.props.room.exits, 'PLAYER',this.props.player)
 
@@ -41,10 +39,10 @@ import axios from "axios";
                 
                 <h2 >Players:</h2>
                 <div className="player">
-                {this.props.room.players.length < 1 ? (
-              <div className="players">There are no players here.</div>
-            ) : (
-              <div className="players">{this.props.room.players.map(player=> <li className="players" >{player} </li>)}</div>
+                {this.props.room.players ? (
+                  <div className="players">{this.props.room.players.map(player=> <li className="players" >{player} </li>)}</div>
+                  ) : (
+                  <div className="players">There are no players here.</div>
             )}
                 </div>
             </div>
@@ -56,10 +54,10 @@ import axios from "axios";
                 <p className='stats'><h2> Speed:</h2> {this.props.player.speed} </p></p></div>
                 <div className="inventory-section">
                 <div>INVENTORY:</div>
-                <div>  {this.props.player.inventory.length < 1 ? (
-              <div className="inventory">You have nothing in your inventory.</div>
-            ) : (
-              <div className="inventory">{this.props.room.inventory.map(player=> <li className="players" >{player} </li>)}</div>
+                <div>  {this.props.player.inventory ? this.props.player.inventory.length > 1 ? (
+                  <div className="inventory">{this.props.room.inventory.map(player=> <li className="players" >{player} </li>)}</div>
+                  ) : ( <div className="inventory">You have nothing in your inventory.</div> ) : (
+                  <div className="inventory">You have nothing in your inventory.</div>
             )}
             </div>
 

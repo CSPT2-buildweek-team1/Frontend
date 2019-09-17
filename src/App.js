@@ -195,7 +195,7 @@ import axios from 'axios';
           <Header />
             <div className='body'>
               <Map rooms={this.state.rooms.data} currentRoom={this.state.room}/>
-              <Sidebar  player={this.state.player} room = {this.state.room} />
+              <Sidebar  player={this.state.player} room ={this.state.room} />
             </div>
             <Footer player={this.state.player} room={this.state.room} move={this.move} buttonClass={this.state.buttonClass}/>
           </div>
